@@ -1,0 +1,14 @@
+DELIMITER $$
+
+CREATE FUNCTION TotalSpent(cust_id INT)
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+    DECLARE total DECIMAL(10,2);
+    SELECT SUM(Amount) INTO total
+    FROM Orders
+    WHERE CustomerID = cust_id;
+    RETURN total;
+END$$
+
+DELIMITER ;
